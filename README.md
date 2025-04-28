@@ -229,9 +229,9 @@ If you want to use this Framework to automate your own web application (of cours
 
 4. Done!, now run on a terminal the comand: ```mvn clean test``` (Or click on ```TestRunner.class``` ---> ```run```) and your project was run!
 
-# Enjoy!
+# 🛠️ Java 17+ Compatibility Configuration
+![image](https://github.com/user-attachments/assets/b26036bb-079c-4f36-bac5-ff50a8a159f5)
 
-🛠️ Java 17+ Compatibility Configuration
 To enable proper test execution on Java 17+ while filtering Cucumber scenarios by tags, the maven-surefire-plugin in pom.xml was configured with:
 
 -Dcucumber.filter.tags="${tagExecution}" for dynamic tag-based scenario filtering (e.g., @Smoke).
