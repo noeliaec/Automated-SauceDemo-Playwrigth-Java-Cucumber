@@ -25,8 +25,8 @@
 
     <properties>
         <!--suppress UnresolvedMavenProperty -->
-        <tagExecution>@ExampleTag</tagExecution>
-        <navigateUrl>https://underc0de.org/</navigateUrl>
+        <tagExecution>@login</tagExecution>
+        <navigateUrl>https://www.saucedemo.com/</navigateUrl>
     </properties>
 
     <dependencies>
@@ -140,7 +140,7 @@
                         <include>**/*Runner*.class</include>
                     </includes>
                     <argLine>
-                        -Dcucumber.filter.tags="${tagExecution}"
+                        -Dcucumber.filter.tags="${tagExecution}" --add-opens java.base/java.lang=ALL-UNNAMED
                     </argLine>
                     <systemPropertyVariables>
                         <!--suppress UnresolvedMavenProperty -->
