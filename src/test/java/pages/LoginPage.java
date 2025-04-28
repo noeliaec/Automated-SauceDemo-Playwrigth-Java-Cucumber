@@ -23,6 +23,13 @@ public class LoginPage extends MasterPage {
         softAssertions.assertThat(page.isVisible(INVENTORY_BUTTON))
                 .as("La lista de inventario debería ser visible tras el login")
                 .isTrue();
+        softAssertions.assertAll();
+    }
 
-        softAssertions.assertAll();    }
+    public void loginFallido() {
+        softAssertions.assertThat(page.isVisible(LOGIN_FAILED_BUTTON))
+                .as("Usuario o contraseña incorrectos")
+                .isTrue();
+        softAssertions.assertAll();
+    }
 }
