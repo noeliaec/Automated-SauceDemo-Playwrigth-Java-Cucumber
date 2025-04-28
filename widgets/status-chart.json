@@ -1,0 +1,1 @@
+[{"uid":"d5c0a16f25108ce3","name":"Usuario válido ingresa al inventario","time":{"start":1745856749600,"stop":1745856756325,"duration":6725},"status":"passed","severity":"normal"},{"uid":"92d1a6307e9168f6","name":"Login fallido con usuario inválido","time":{"start":1745856756376,"stop":1745856757156,"duration":780},"status":"passed","severity":"normal"}]
