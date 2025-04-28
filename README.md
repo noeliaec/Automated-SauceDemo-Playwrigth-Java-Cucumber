@@ -231,8 +231,45 @@ If you want to use this Framework to automate your own web application (of cours
 
 # Enjoy!
 
+🛠️ Java 17+ Compatibility Configuration
+To enable proper test execution on Java 17+ while filtering Cucumber scenarios by tags, the maven-surefire-plugin in pom.xml was configured with:
 
-
+-Dcucumber.filter.tags="${tagExecution}" for dynamic tag-based scenario filtering (e.g., @Smoke).
+```bash
+--add-opens java.base/java.lang=ALL-UNNAMED
+```
+to avoid reflection errors in Java 17+.
+This ensures compatibility with Java 17+, Cucumber, and Maven while maintaining a clean and efficient test process.
+```bash
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.1.2</version>
+    <executions>
+        <execution>
+            <phase>integration-test</phase>
+            <goals>
+                <goal>test</goal>
+            </goals>
+        </execution>
+    </executions>
+    <configuration>
+        <includes>
+            <include>**/*Runner*.class</include>
+        </includes>
+        <argLine>
+            -Dcucumber.filter.tags="${tagExecution}" --add-opens java.base/java.lang=ALL-UNNAMED
+        </argLine>
+        <systemPropertyVariables>
+            <executionMode>${mode}</executionMode>
+            <browser>Chromium</browser>
+            <applicationUrl>${navigateUrl}</applicationUrl>
+            <remoteUrl/>
+        </systemPropertyVariables>
+        <testFailureIgnore>true</testFailureIgnore>
+    </configuration>
+</plugin>
+```
 ## Architect, creator and developer of the framework
 ```sd
     * Joel Vitelli
