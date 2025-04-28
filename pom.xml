@@ -25,7 +25,7 @@
 
     <properties>
         <!--suppress UnresolvedMavenProperty -->
-        <tagExecution>@login</tagExecution>
+        <tagExecution>@regression</tagExecution>
         <navigateUrl>https://www.saucedemo.com/</navigateUrl>
     </properties>
 
@@ -94,6 +94,20 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>gherkin</artifactId>
+                <version>24.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>messages</artifactId>
+                <version>24.1.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <profiles>
         <profile>
             <activation>
@@ -137,17 +151,17 @@
                 </executions>
                 <configuration>
                     <includes>
-                        <include>**/*Runner*.class</include>
+                        <include>**/*Runner.java</include>
                     </includes>
                     <argLine>
                         -Dcucumber.filter.tags="${tagExecution}" --add-opens java.base/java.lang=ALL-UNNAMED
                     </argLine>
                     <systemPropertyVariables>
-                        <!--suppress UnresolvedMavenProperty -->
                         <executionMode>${mode}</executionMode>
                         <browser>Chromium</browser>
                         <applicationUrl>${navigateUrl}</applicationUrl>
                         <remoteUrl/>
+                        <allure.results.directory>target/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>

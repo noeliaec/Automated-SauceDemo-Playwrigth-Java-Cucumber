@@ -34,9 +34,21 @@ jobs:
           else
             mvn clean test -PGrid
           fi
-      - name: Upload Test Results
+      - name: Generate Allure Report
+        run: |
+          npm install -g allure-commandline --unsafe-perm=true
+          allure generate target/cucumber-reports/ --clean -o target/allure-report
+
+      - name: Upload Cucumber Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Cucumber Reports
-          path: target/Reports
+          path: target/cucumber-reports
+
+      - name: Upload Allure Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Allure Reports
+          path: target/allure-report
