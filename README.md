@@ -271,19 +271,41 @@ This ensures compatibility with Java 17+, Cucumber, and Maven while maintaining 
     </configuration>
 </plugin>
 ```
+
+### Install Allure CLI on Windows
+
+1. Download the binary from [GitHub Allure Releases](https://github.com/allure-framework/allure2/releases).
+2. Unzip the package and add the `/bin` folder to your system `PATH` environment variable.
+3. Verify the installation by running:
+```bash
+allure --version
+```
+
+
+## 📊 View the Allure Report Locally
+
+Generate and open the Allure report:
+```bash
+mvn clean test -PGrid
+
+allure generate target/allure-results --clean -o target/allure-report
+allure open target/allure-report
+```
+
+## 🔥 Allure Report Online
+
+The Allure report is automatically generated with every push to the `main` branch and is available here:
+
+👉 [View Allure Report](https://noeliaec.github.io/Automated-SauceDemo-Playwrigth-Java-Cucumber/)
+
+Each test execution updates this report, displaying the executed scenarios, timeline, features, and detailed results.
+
+
 ## Architect, creator and developer of the framework
 ```sd
     * Joel Vitelli
 ```
-## Distributed by
-```sd
-    * Underc0de.org
-```
 
-## Contributing Developers
-```sd
-    * Danilo Vezzoni    
-```
 
 
 
