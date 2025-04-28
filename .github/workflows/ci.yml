@@ -10,7 +10,6 @@ on:
       tag:
         description: 'Tag a ejecutar (por ejemplo @smoke, @regression)'
         required: false
-        default: '@smoke'
 jobs:
   ExecuteTests:
     runs-on: ubuntu-latest
@@ -29,8 +28,12 @@ jobs:
         run: mvn exec:java -e -Dexec.mainClass="com.microsoft.playwright.CLI" -Dexec.args="install"
 
       - name: Build with Maven
-        run: mvn clean test -PGrid -DtagExecution=${{ github.event.inputs.tag }}
-
+        run: |
+          if [ -n "${{ github.event.inputs.tag }}" ]; then
+            mvn clean test -PGrid -DtagExecution=${{ github.event.inputs.tag }}
+          else
+            mvn clean test -PGrid
+          fi
       - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v4
