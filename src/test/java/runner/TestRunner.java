@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
         plugin = {"pretty",
                 "html:target/cucumber-reports/cucumber.html",
                 "json:target/cucumber-reports/cucumber.json",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         },
         features = "src/test/resources/features/",
         glue = {"steps","runner"}
