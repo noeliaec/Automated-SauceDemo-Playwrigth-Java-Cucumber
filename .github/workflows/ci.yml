@@ -6,7 +6,11 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-
+    inputs:
+      tag:
+        description: 'Tag a ejecutar (por ejemplo @smoke, @regression)'
+        required: false
+        default: '@smoke'
 jobs:
   ExecuteTests:
     runs-on: ubuntu-latest
@@ -25,7 +29,7 @@ jobs:
         run: mvn exec:java -e -Dexec.mainClass="com.microsoft.playwright.CLI" -Dexec.args="install"
 
       - name: Build with Maven
-        run: mvn test -PGrid
+        run: mvn clean test -PGrid -DtagExecution=${{ github.event.inputs.tag }}
 
       - name: Upload Test Results
         if: always()
